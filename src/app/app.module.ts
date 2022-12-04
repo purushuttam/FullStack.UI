@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { CalendarModule } from 'primeng/calendar';
 
+
 import {InputTextModule} from 'primeng/inputtext';
 import { UpdateEmployeeComponent } from './Components/Employees/update-employee/update-employee.component';
 import { AddDepartmentComponent } from './Components/Departments/add-department/add-department.component';
@@ -33,7 +34,7 @@ import { LeavesComponent } from './Components/Employees/leaves/leaves.component'
     DepartmentListComponent,
     ViewEmployeeComponent,
     AddEmployeeComponent,
-    LeavesComponent,
+    LeavesComponent
   ],
   imports: [
     BrowserModule,
