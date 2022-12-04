@@ -3,24 +3,39 @@
 
   <div class="row">
     <div class="col-6">
-      <form #form="ngForm" >
+      <form #Dform="ngForm" (ngSubmit)="onSubmit(Dform.value)" >
         <div class="mb-3">
-          <label for="name" class="form-label">Department Name</label>
-          <input type="text" class="form-control" id="name" name="name"
+          <label for="department_name" class="form-label" >Department Name</label>
+          <input type="text" class="form-control" id="department_name" name="department_name"
+          ngModel name="department_name" required
           >
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label">Manager Name</label>
-          <input type="text" class="form-control" id="email" name="email"
+          <label for="manager_name" class="form-label">Manager Name</label>
+          <input type="text" class="form-control" id="manager_name" name="manager_name"
+          ngModel name="manager_name" required
           >
         </div>
         <div class="mb-3">
-          <label for="phone" class="form-label">Location</label>
-          <input type="text" class="form-control" id="phone" name="phone"
+          <label for="city_id" class="form-label">City</label>
+          <input type="text" class="form-control" id="city_id" name="city_id"
+          ngModel name="city_id" required
+          >
+        </div>
+        <div class="mb-3">
+          <label for="state_id" class="form-label">State</label>
+          <input type="text" class="form-control" id="state_id" name="state_id"
+          ngModel name="state_id" required
+          >
+        </div>
+        <div class="mb-3">
+          <label for="country_id" class="form-label">Country</label>
+          <input type="text" class="form-control" id="country_id" name="country_id"
+          ngModel name="country_id" required
           >
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!Dform.valid">Submit</button>
     </form>
     </div>
   </div>

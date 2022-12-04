@@ -6,6 +6,17 @@ export interface Employees{
   salary: number;
   department : string;
 }
+
+export interface DashboardIndex {
+  SNo:number;
+  Name:string;
+  Total:number;
+}
+
+export interface Status{
+  Id:string;
+  Status: boolean;
+}
 export interface Employee {
   employee_id: string
   first_name: string

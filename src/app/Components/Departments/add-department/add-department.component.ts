@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {InputTextModule} from 'primeng/inputtext';
-import {ButtonModule} from 'primeng/button';
+import { Department } from 'src/app/models/department.model';
+import { DepartmentDataService } from 'src/app/services/department-data.service';
 
 @Component({
   selector: 'app-add-department',
@@ -9,10 +9,15 @@ import {ButtonModule} from 'primeng/button';
 })
 export class AddDepartmentComponent implements OnInit {
 
-  value2:string='username';
-  constructor() { }
+  constructor(private DepartmentDataService : DepartmentDataService) { }
 
   ngOnInit(): void {
   }
 
+  onSubmit(DData:Department){
+    console.log(DData);
+    this.DepartmentDataService.saveDepartment(DData).subscribe((response:any) => {
+      console.log(response);
+    });
+  }
 }

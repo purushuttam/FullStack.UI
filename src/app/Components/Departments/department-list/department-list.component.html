@@ -1,14 +1,15 @@
 <div class="container my-5">
   <h1 class="mb-3">Departments</h1>
 
-  <table class="table" *ngIf="Departments && Departments.length > 0">
+  <table class="table table-hover" *ngIf="Departments && Departments.length > 0">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Action</th>
+        <th>Department Id</th>
+        <th>Department Name</th>
+        <th>Manager Name</th>
+        <th>City Id</th>
+        <th>State Id</th>
+        <th>Country Id</th>
         <!-- <th>Salary</th>
         <th>Department</th> -->
       </tr>
@@ -18,10 +19,12 @@
         <td>{{department.department_id}}</td>
         <td>{{department.department_name}}</td>
         <td>{{department.manager_name}}</td>
-        <td>{{department.location}}</td>
+        <td>{{department.city_id}}</td>
+        <td>{{department.state_id}}</td>
+        <td>{{department.country_id}}</td>
         <td>
           <a href="" class=""><i class="fa-solid fa-pen-to-square"></i></a> |
-          <a href=""><i class="fa-solid fa-trash"></i></a>|
+          <a (click)="onDelete(department.department_id)" ><i class="fa-solid fa-trash"></i></a>|
           <a href=""><i class="fa-solid fa-eye"></i></a>
         </td>
       </tr>
