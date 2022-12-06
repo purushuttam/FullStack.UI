@@ -1,97 +1,91 @@
-
-<div class="container my-5">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <div class="form-group row m-1">
-      <label for="inputEmail3" class="col-sm-2 col-form-label">First Name</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputEmail3" placeholder="First Name" ngModel name="firstName" required>
-      </div>
+<div class="mb-3 container m-4">
+  <form [formGroup]="reactform" #Dform="ngForm" (ngSubmit)="onSubmit(Dform.value)">
+    <div class="form-row">
+      <label for="first_name" class="form-label">First Name</label>
+      <input class="form-control" type="text" name="first_name" id="first_name" formControlName="first_name" required>
     </div>
-    <div class="form-group row m-2">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Last Name</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputPassword3" placeholder="Last Name" ngModel name="lastName">
-      </div>
+    <div class="form-row">
+      <label for="last_name" class="form-label">Last Name</label>
+      <input class="form-control" type="text" name="last_name" id="last_name" formControlName="last_name" required>
     </div>
-    <div class="form-group row m-2">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Gender</label>
-      <div class="col-sm-10">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked ngModel name="gender">
-  <label class="form-check-label" for="exampleRadios1">
-    Male
-  </label>
-  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked ngModel name="gender">
-  <label class="form-check-label" for="exampleRadios1">
-    Female
-  </label>
-      </div>
-    </div>
-    <div class="form-group row m-2">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Date Of Birth</label>
-      <div class="col-sm-10">
-        <input type="date" class="form-control" id="inputPassword3" placeholder="Date Of Birth" ngModel name="dob">
-      </div>
-    </div>
-    <div class="form-group row m-2">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Date Of Joining</label>
-      <div class="col-sm-10">
-        <input type="date" class="form-control" id="inputPassword3" placeholder="Date Of Birth" ngModel name="Doj">
-      </div>
-    </div>
-    <div class="form-group row m-2">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Department </label>
-      <div class="col-sm-10">
-        <select name="cars" id="cars" ngModel name="departments">
-          <option value="IT">IT</option>
-          <option value="Finance">Finance</option>
-          <option value="HR">HR</option>
-          <option value="Electrical">Electrical</option>
-        </select>
-      </div>
+    <div class="form-row">
+      <label for="gender" class="form-label">gender</label>
+      <select class="form-select" aria-label="Default select example" formControlName="gender">
+        <option selected>Open this select menu</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
     </div>
 
-    <div class="form-group row m-2">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Email</label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputPassword3" placeholder="Email" ngModel name="email" required email #email="ngModel">
-        <span class="help-block" *ngIf="!email.valid && email.touched">Please enter valid email!</span>
+    <div class="form-row">
+      <label for="dob" class="form-label">DOB</label>
+      <input class="form-control" type="date" name="dob" id="dob" formControlName="dob" required>
+    </div>
+    <div class="form-row">
+      <label for="jd" class="form-label">JD</label>
+      <input class="form-control" type="date" name="jd" id="jd" formControlName="jd" required>
+    </div>
+    <div class="form-row">
+      <label for="department_id" class="form-label">department_id</label>
+      <input class="form-control" type="text" name="department_id" id="department_id" formControlName="department_id" required>
+    </div>
+    <!-- <div class="form-row">
+      <label for="photopath" class="form-label">photopath</label>
+      <input class="form-control" type="text" name="photopath" id="photopath" formControlName="photopath">
+    </div><hr> -->
+    <!--qualification start form-->
+    <section formArrayName="employee_Qualification">
+      <div *ngFor="let item of employee_Qualification.controls;let i=index" [formGroupName]="i">
+        <div class="form-row">
+          <input class="form-control" type="text" placeholder="qualification_year" formControlName="qualification_year">
+        </div>
+        <div class="form-row">
+          <input class="form-control" type="text" placeholder="course_name" formControlName="course_name">
+        </div>
+        <div class="form-row">
+          <input class="form-control" type="text" placeholder="last_qualification_university" formControlName="last_qualification_university">
+        </div>
+        <div class="form-row">
+          <input class="form-control" type="text" placeholder="last_qualification_marks" formControlName="last_qualification_marks">
+        </div>
+        <button class="btn btn-danger" (click)="RemoveQualification(i)">(-)</button>
       </div>
+    </section>
+    <div>
+      <a class="btn btn-info" mat-raised-button color="primary" (click)="AddnewQualification()">Add New Qualification (+)</a>
+    </div><hr>
+    <!--contact form start-->
+    <section formArrayName="employee_Contact_Details">
+      <div *ngFor="let item of employee_Contact_Details.controls;let i=index" [formGroupName]="i">
+        <div class="form-row">
+          <input class="form-control" type="text" placeholder="mobile_no" formControlName="mobile_no">
+        </div>
+        <div class="form-row">
+          <input class="form-control" type="text" placeholder="email_id" formControlName="email_id">
+        </div>
+        <div class="form-row">
+          <input class="form-control" type="text" placeholder="address" formControlName="address">
+        </div>
+        <div class="form-row">
+          <input class="form-control" type="text" placeholder="city_id" formControlName="city_id">
+        </div>
+        <div class="form-row">
+          <input class="form-control" type="text" placeholder="state_id" formControlName="state_id">
+        </div>
+        <div class="form-row">
+          <input class="form-control" type="text" placeholder="country_id" formControlName="country_id">
+        </div>
+        <button class="btn btn-danger" (click)="RemoveContact(i)">(-)</button>
+      </div>
+    </section>
+    <div>
+      <a class="btn btn-info" (click)="AddNewContact()">Add New Contact Details(+)</a>
     </div>
 
-    <div class="form-group row m-2">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Phone</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" id="inputPassword3" placeholder="Password" ngModel name="phone">
-      </div>
+    <div class="example-button-row" style="margin-top: 5px">
+      <button class="btn btn-primary" mat-raised-button color="primary" >Submit</button> |
+      <button class="btn btn-danger" mat-raised-button color="accent">Clear</button>
     </div>
-    <!-- <div class="form-group row">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-      </div>
-    </div> -->
-    <div class="form-group">
-      <button class="btn btn-primary m-2" type="submit" [disabled]="!f.valid">Submit</button>
-    </div>
-
   </form>
-
 </div>

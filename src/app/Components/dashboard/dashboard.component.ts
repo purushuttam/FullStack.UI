@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { interval, Subscription } from 'rxjs';
 import { Department } from 'src/app/models/department.model';
 import { DashboardIndex, Employee } from 'src/app/models/employee.model';
@@ -12,6 +13,12 @@ import { EmployeesService } from 'src/app/services/employees.service';
 })
 export class DashboardComponent implements OnInit {
 
+  reactForm = new FormGroup({
+    code: new FormControl('',Validators.required),
+    name: new FormControl('',Validators.required)
+  });
+  constructor(private EmployeeService: EmployeesService, private DepartmentDataService: DepartmentDataService) { }
+
   countd:any;
 
   departments: Department[] = [];
@@ -20,7 +27,6 @@ export class DashboardComponent implements OnInit {
   dcount:number = 0;
   dashboard:DashboardIndex[] = [];
 
-  constructor(private EmployeeService: EmployeesService, private DepartmentDataService: DepartmentDataService) { }
 
   ngOnInit(): void {
     this.DepartmentDataService.getAllDepartments()
