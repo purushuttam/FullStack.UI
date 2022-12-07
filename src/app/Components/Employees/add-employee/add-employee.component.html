@@ -1,41 +1,44 @@
 <div class="mb-3 container m-4">
   <form [formGroup]="reactform" #Dform="ngForm" (ngSubmit)="onSubmit(Dform.value)">
-    <div class="form-row">
-      <label for="first_name" class="form-label">First Name</label>
-      <input class="form-control" type="text" name="first_name" id="first_name" formControlName="first_name" required>
-    </div>
-    <div class="form-row">
-      <label for="last_name" class="form-label">Last Name</label>
-      <input class="form-control" type="text" name="last_name" id="last_name" formControlName="last_name" required>
-    </div>
-    <div class="form-row">
-      <label for="gender" class="form-label">gender</label>
-      <select class="form-select" aria-label="Default select example" formControlName="gender">
-        <option selected>Open this select menu</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
+    <div class="border border-light p-5">
+      <div class="form-row">
+        <label for="first_name" class="form-label">First Name</label>
+        <input class="form-control" type="text" name="first_name" id="first_name" formControlName="first_name" required>
+      </div>
+      <div class="form-row">
+        <label for="last_name" class="form-label">Last Name</label>
+        <input class="form-control" type="text" name="last_name" id="last_name" formControlName="last_name" required>
+      </div>
+      <div class="form-row">
+        <label for="gender" class="form-label">gender</label>
+        <select class="form-select" aria-label="Default select example" formControlName="gender">
+          <option selected>Open this select menu</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
 
-    <div class="form-row">
-      <label for="dob" class="form-label">DOB</label>
-      <input class="form-control" type="date" name="dob" id="dob" formControlName="dob" required>
+      <div class="form-row">
+        <label for="dob" class="form-label">DOB</label>
+        <input class="form-control" type="date" name="dob" id="dob" formControlName="dob" required>
+      </div>
+      <div class="form-row">
+        <label for="jd" class="form-label">JD</label>
+        <input class="form-control" type="date" name="jd" id="jd" formControlName="jd" required>
+      </div>
+      <div class="form-row">
+        <label for="department_id" class="form-label">department_id</label>
+        <input class="form-control" type="text" name="department_id" id="department_id" formControlName="department_id" required>
+      </div>
+      <!-- <div class="form-row">
+        <label for="photopath" class="form-label">photopath</label>
+        <input class="form-control" type="text" name="photopath" id="photopath" formControlName="photopath">
+      </div><hr> -->
     </div>
-    <div class="form-row">
-      <label for="jd" class="form-label">JD</label>
-      <input class="form-control" type="date" name="jd" id="jd" formControlName="jd" required>
-    </div>
-    <div class="form-row">
-      <label for="department_id" class="form-label">department_id</label>
-      <input class="form-control" type="text" name="department_id" id="department_id" formControlName="department_id" required>
-    </div>
-    <!-- <div class="form-row">
-      <label for="photopath" class="form-label">photopath</label>
-      <input class="form-control" type="text" name="photopath" id="photopath" formControlName="photopath">
-    </div><hr> -->
     <!--qualification start form-->
-    <section formArrayName="employee_Qualification">
+    <hr>
+    <section formArrayName="employee_Qualification" class="border border-light p-5">
       <div *ngFor="let item of employee_Qualification.controls;let i=index" [formGroupName]="i">
         <div class="form-row">
           <input class="form-control" type="text" placeholder="qualification_year" formControlName="qualification_year">
@@ -56,7 +59,7 @@
       <a class="btn btn-info" mat-raised-button color="primary" (click)="AddnewQualification()">Add New Qualification (+)</a>
     </div><hr>
     <!--contact form start-->
-    <section formArrayName="employee_Contact_Details">
+    <section formArrayName="employee_Contact_Details" class="border border-light p-5">
       <div *ngFor="let item of employee_Contact_Details.controls;let i=index" [formGroupName]="i">
         <div class="form-row">
           <input class="form-control" type="text" placeholder="mobile_no" formControlName="mobile_no">

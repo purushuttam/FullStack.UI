@@ -23,7 +23,7 @@ export class EmployeesService {
   }
 
   saveEmployee(employee:Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.baseApiUrl + 'api/Employee/AddEmployee' , employee);
+    return this.http.post<Employee>(this.baseApiUrl + 'api/Employee/saveEmployee' , employee);
   }
 
   updateEmployee(employee:Employee): Observable<Employee> {

@@ -27,9 +27,9 @@ export interface Employee {
   department_id: string
   department_name: string
   is_active: boolean
-  created_on: Date
+  created_on: string
   created_by: string
-  updated_on: Date
+  updated_on: string
   updated_by: string
   employee_Qualification: EmployeeQualification[]
   employee_Contact_Details: EmployeeContactDetail[]
@@ -41,11 +41,11 @@ export interface EmployeeQualification {
   qualification_year: number
   course_name: string
   last_qualification_university: string
-  last_qualification_marks: number
+  last_qualification_marks: string
   is_active: boolean
-  created_on: Date
+  created_on: string
   created_by: string
-  updated_on: Date
+  updated_on: string
   updated_by: string
 }
 
@@ -59,8 +59,8 @@ export interface EmployeeContactDetail {
   state_id: string
   country_id: string
   is_active: boolean
-  created_on: Date
+  created_on: string
   created_by: string
-  updated_on: Date
+  updated_on: string
   updated_by: string
 }
