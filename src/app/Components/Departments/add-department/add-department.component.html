@@ -16,25 +16,34 @@
           ngModel name="manager_name" required
           >
         </div>
-        <div class="mb-3">
-          <label for="city_id" class="form-label">City</label>
-          <input type="text" class="form-control" id="city_id" name="city_id"
-          ngModel name="city_id" required
-          >
-        </div>
-        <div class="mb-3">
-          <label for="state_id" class="form-label">State</label>
-          <input type="text" class="form-control" id="state_id" name="state_id"
-          ngModel name="state_id" required
-          >
-        </div>
+
+
         <div class="mb-3">
           <label for="country_id" class="form-label">Country</label>
-          <input type="text" class="form-control" id="country_id" name="country_id"
-          ngModel name="country_id" required
-          >
+          <select (click)="onCountry()" class="form-select" ngModel name="country_id">
+            <option *ngFor="let country of countries;  let i = index" value="{{country.iso2}}"
+           #country_code
+            >
+            {{ country.name }}
+            </option>
+          </select>
         </div>
-
+         <div class="mb-3">
+          <label for="state_id" class="form-label">State</label>
+          <select (click)="OnCountrySelect(Dform.value.country_id)" class="form-select" ngModel name="state_id">
+            <option *ngFor="let state of states;  let i = index" value="{{state.state_code}}" >
+            {{ state.name }}
+            </option>
+        </select>
+        </div>
+        <div class="mb-3">
+          <label for="city_id" class="form-label">City</label>
+          <select (click)="OnSelectState(Dform.value.state_id)" class="form-select" ngModel name="city_id">
+            <option *ngFor="let city of cities;  let i = index" value="{{city.name}}" >
+            {{ city.name }}
+            </option>
+        </select>
+        </div>
         <button type="submit" class="btn btn-primary" [disabled]="!Dform.valid">Submit</button>
     </form>
     </div>

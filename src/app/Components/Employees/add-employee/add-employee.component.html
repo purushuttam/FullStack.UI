@@ -1,6 +1,6 @@
 <div class="mb-3 container m-4">
   <form [formGroup]="reactform" #Dform="ngForm" (ngSubmit)="onSubmit(Dform.value)">
-    <div class="border border-light p-5">
+    <div class="border border-light p-2">
       <div class="form-row">
         <label for="first_name" class="form-label">First Name</label>
         <input class="form-control" type="text" name="first_name" id="first_name" formControlName="first_name" required>
@@ -29,7 +29,11 @@
       </div>
       <div class="form-row">
         <label for="department_id" class="form-label">department_id</label>
-        <input class="form-control" type="text" name="department_id" id="department_id" formControlName="department_id" required>
+        <select class="form-select" formControlName="department_id">
+          <option *ngFor="let department of departments;  let i = index" value="{{department.department_id }}" >
+          {{ department.department_name }}
+          </option>
+        </select>
       </div>
       <!-- <div class="form-row">
         <label for="photopath" class="form-label">photopath</label>
@@ -38,18 +42,22 @@
     </div>
     <!--qualification start form-->
     <hr>
-    <section formArrayName="employee_Qualification" class="border border-light p-5">
+    <section formArrayName="employee_Qualification" class="border border-light p-2">
       <div *ngFor="let item of employee_Qualification.controls;let i=index" [formGroupName]="i">
         <div class="form-row">
+          <label for="qualification_year" class="form-label">Qualification Year</label>
           <input class="form-control" type="text" placeholder="qualification_year" formControlName="qualification_year">
         </div>
         <div class="form-row">
+          <label for="course_name" class="form-label">Course Name</label>
           <input class="form-control" type="text" placeholder="course_name" formControlName="course_name">
         </div>
         <div class="form-row">
+          <label for="last_qualification_university" class="form-label">University Name</label>
           <input class="form-control" type="text" placeholder="last_qualification_university" formControlName="last_qualification_university">
         </div>
         <div class="form-row">
+          <label for="last_qualification_marks" class="form-label">Marks</label>
           <input class="form-control" type="text" placeholder="last_qualification_marks" formControlName="last_qualification_marks">
         </div>
         <button class="btn btn-danger" (click)="RemoveQualification(i)">(-)</button>
@@ -59,25 +67,45 @@
       <a class="btn btn-info" mat-raised-button color="primary" (click)="AddnewQualification()">Add New Qualification (+)</a>
     </div><hr>
     <!--contact form start-->
-    <section formArrayName="employee_Contact_Details" class="border border-light p-5">
+    <section formArrayName="employee_Contact_Details" class="border border-light p-2">
       <div *ngFor="let item of employee_Contact_Details.controls;let i=index" [formGroupName]="i">
         <div class="form-row">
+          <label for="mobile_no" class="form-label">Mobile No.</label>
           <input class="form-control" type="text" placeholder="mobile_no" formControlName="mobile_no">
         </div>
         <div class="form-row">
+          <label for="email_id" class="form-label">Email Id</label>
           <input class="form-control" type="text" placeholder="email_id" formControlName="email_id">
         </div>
         <div class="form-row">
+          <label for="address" class="form-label">Address</label>
           <input class="form-control" type="text" placeholder="address" formControlName="address">
         </div>
         <div class="form-row">
-          <input class="form-control" type="text" placeholder="city_id" formControlName="city_id">
+          <label for="city_id" class="form-label">Country Name</label>
+          <select (click)="onCountry()" class="form-select" formControlName="country_id">
+            <option *ngFor="let country of countries;  let i = index" value="{{country.iso2}}"
+           #country_code
+            >
+            {{ country.name }}
+            </option>
+          </select>
         </div>
         <div class="form-row">
-          <input class="form-control" type="text" placeholder="state_id" formControlName="state_id">
+          <label for="state_id" class="form-label">State Name</label>
+          <select (click)="OnCountrySelect(Dform.value.employee_Contact_Details[i].country_id)" class="form-select" formControlName="state_id">
+            <option *ngFor="let state of states;  let i = index" value="{{state.state_code}}" >
+            {{ state.name }}
+            </option>
+          </select>
         </div>
         <div class="form-row">
-          <input class="form-control" type="text" placeholder="country_id" formControlName="country_id">
+          <label for="country_id" class="form-label">City Name</label>
+          <select (click)="OnSelectState(Dform.value.employee_Contact_Details[i].state_id)" class="form-select" formControlName="city_id">
+            <option *ngFor="let city of cities;  let i = index" value="{{city.name}}" >
+            {{ city.name }}
+            </option>
+        </select>
         </div>
         <button class="btn btn-danger" (click)="RemoveContact(i)">(-)</button>
       </div>
@@ -87,8 +115,8 @@
     </div>
 
     <div class="example-button-row" style="margin-top: 5px">
-      <button class="btn btn-primary" mat-raised-button color="primary" >Submit</button> |
-      <button class="btn btn-danger" mat-raised-button color="accent">Clear</button>
+      <button class="btn btn-primary p-2" mat-raised-button color="primary" >Submit</button> |
+      <button class="btn btn-danger p-2" mat-raised-button color="accent">Clear</button>
     </div>
   </form>
 </div>

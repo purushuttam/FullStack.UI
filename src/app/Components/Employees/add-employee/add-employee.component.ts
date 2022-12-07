@@ -3,6 +3,10 @@ import { NgForm, FormControl, FormGroup, FormBuilder, FormArray, Validators } fr
 import { NgModel } from '@angular/forms';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeesService } from 'src/app/services/employees.service';
+import { country, state, city } from 'src/app/models/country.model';
+import { CountryDataService } from 'src/app/services/country-data.service';
+import { DepartmentDataService } from 'src/app/services/department-data.service';
+import { Department } from 'src/app/models/department.model';
 
 @Component({
   selector: 'app-add-employee',
@@ -11,7 +15,24 @@ import { EmployeesService } from 'src/app/services/employees.service';
 })
 export class AddEmployeeComponent implements OnInit {
 
-  constructor(private employeeService:EmployeesService) { }
+  countries:country[] = [];
+
+  states:state[] = [];
+
+  cities:city[] = [];
+
+  departments: Department[] = []
+
+  constructor(
+    private employeeService:EmployeesService,
+    private CountryData: CountryDataService,
+    private DepartmentData: DepartmentDataService) {
+      this.DepartmentData.getAllDepartments().subscribe({
+        next:(department) => {
+          this.departments = department;
+        }
+      })
+     }
 
   ngOnInit(): void {
     this.AddNewContact();
@@ -46,7 +67,7 @@ export class AddEmployeeComponent implements OnInit {
       employee_id : new FormControl(''),
       qualification_year: new FormControl(0, Validators.required),
       course_name: new FormControl('', Validators.required),
-      last_qualification_university: new FormControl(', Validators.required'),
+      last_qualification_university: new FormControl('', Validators.required),
       last_qualification_marks: new FormControl('', Validators.required),
       is_active: new FormControl(true),
     created_on: new FormControl('2022-12-07T09:24:08.121Z'),
@@ -103,6 +124,41 @@ export class AddEmployeeComponent implements OnInit {
   // ProceedSave() {
   //   console.log(this.reactform.value);
   // }
+
+  onCountry() {
+    this.CountryData.GetAllCountries()
+    .subscribe({
+      next: (country) => {
+        this.countries = country;
+      },
+      error: (Response) => {
+        console.log(Response);
+      }
+    })
+  }
+
+  OnCountrySelect(country_code:string){
+    console.log(country_code);
+    this.CountryData.GetAllState(country_code).subscribe({
+      next: (state) => {
+        this.states = state;
+      },
+      error: (response) => {
+        console.log(response);
+      }
+    })
+  }
+  OnSelectState(state_code:string) {
+    console.log(state_code);
+    this.CountryData.GetAllCities(state_code).subscribe({
+      next: (city) => {
+        this.cities = city;
+      },
+      error: (response) => {
+        console.log(response);
+      }
+    })
+  }
 
   onSubmit(EData:Employee){
     console.log(EData);
