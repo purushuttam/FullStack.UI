@@ -22,6 +22,7 @@ import { ViewEmployeeComponent } from './Components/Employees/view-employee/view
 import { AddEmployeeComponent } from './Components/Employees/add-employee/add-employee.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { LeavesComponent } from './Components/Employees/leaves/leaves.component';
+import { AddLeaveComponent } from './Components/Employees/leaves/add-leave/add-leave.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { LeavesComponent } from './Components/Employees/leaves/leaves.component'
     DepartmentListComponent,
     ViewEmployeeComponent,
     AddEmployeeComponent,
-    LeavesComponent
+    LeavesComponent,
+    AddLeaveComponent
   ],
   imports: [
     BrowserModule,

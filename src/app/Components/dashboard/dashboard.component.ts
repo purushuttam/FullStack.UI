@@ -5,6 +5,8 @@ import { Department } from 'src/app/models/department.model';
 import { DashboardIndex, Employee } from 'src/app/models/employee.model';
 import { DepartmentDataService } from 'src/app/services/department-data.service';
 import { EmployeesService } from 'src/app/services/employees.service';
+import { EmployeeSearch } from 'src/app/models/employee.model';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,12 +19,17 @@ export class DashboardComponent implements OnInit {
     code: new FormControl('',Validators.required),
     name: new FormControl('',Validators.required)
   });
-  constructor(private EmployeeService: EmployeesService, private DepartmentDataService: DepartmentDataService) { }
+  constructor(
+    private EmployeeService: EmployeesService,
+    private DepartmentDataService: DepartmentDataService,
+    private titleService : Title) {
+    this.titleService.setTitle('Dashboard');
+  }
 
   countd:any;
 
   departments: Department[] = [];
-  employees: Employee[] = [];
+  employees: EmployeeSearch[] = [];
   ecount:number = 0;
   dcount:number = 0;
   dashboard:DashboardIndex[] = [];
@@ -34,9 +41,6 @@ export class DashboardComponent implements OnInit {
       next: (department) => {
         this.departments = department;
         this.dcount = department.length;
-        // this.dashboard[0].SNo = 1;
-        // this.dashboard[0].Name = 'Departments';
-        // this.dashboard[0].Total = department.length;
       },
       error: (Response) => {
         console.log(Response);
@@ -46,7 +50,6 @@ export class DashboardComponent implements OnInit {
     this.EmployeeService.getAllEmployees()
     .subscribe({
       next: (employee) => {
-        console.log(employee)
         this.employees = employee;
         this.ecount = employee.length;
       },

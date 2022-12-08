@@ -1,9 +1,11 @@
 
 import { Component, Input, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { country, state , city} from 'src/app/models/country.model';
 import { Department } from 'src/app/models/department.model';
 import { CountryDataService } from 'src/app/services/country-data.service';
 import { DepartmentDataService } from 'src/app/services/department-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-department',
@@ -17,9 +19,11 @@ export class AddDepartmentComponent implements OnInit {
   cities:city[] = [];
   constructor(
     private DepartmentDataService : DepartmentDataService,
-    private CountryData : CountryDataService
+    private CountryData : CountryDataService,
+    private titleService: Title,
+    private router : Router
     ) {
-
+      this.titleService.setTitle('Department | Add Department')
     }
 
   ngOnInit(): void {
@@ -28,9 +32,12 @@ export class AddDepartmentComponent implements OnInit {
 
 
   onSubmit(DData:Department){
-    console.log(DData);
-    this.DepartmentDataService.saveDepartment(DData).subscribe((response:any) => {
+    this.DepartmentDataService.saveDepartment(DData)
+    .subscribe((response:any) => {
       console.log(response);
+      if(response.resp === true){
+        this.router.navigate(['Department/department-list']);
+      }
     });
   }
 
@@ -38,7 +45,6 @@ export class AddDepartmentComponent implements OnInit {
     this.CountryData.GetAllCountries()
     .subscribe({
       next: (country) => {
-        console.log(country);
         this.countries = country;
       },
       error: (Response) => {
@@ -48,7 +54,6 @@ export class AddDepartmentComponent implements OnInit {
   }
 
   OnCountrySelect(country_code:string){
-    console.log(country_code);
     this.CountryData.GetAllState(country_code)
     .subscribe({
       next: (state) => {
@@ -60,7 +65,6 @@ export class AddDepartmentComponent implements OnInit {
     })
   }
   OnSelectState(state_code:string) {
-    console.log(state_code);
     this.CountryData.GetAllCities(state_code).subscribe({
       next: (city) => {
         this.cities = city;

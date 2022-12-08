@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Department } from '../models/department.model';
+import { Department, JobMaster } from '../models/department.model';
 import { HttpClient } from '@angular/common/http'
 
 @Injectable({
@@ -18,7 +18,7 @@ export class DepartmentDataService {
   }
 
   saveDepartment(department:Department): Observable<any> {
-    return this.http.post<Department>(this.baseApiUrl + 'api/Department/AddDepartment', department);
+    return this.http.post<Department>(this.baseApiUrl + 'api/Department/AddDepartmentAPI', department);
   }
 
   deleteDepartment(department_id:any): Observable<any> {
@@ -31,5 +31,13 @@ export class DepartmentDataService {
 
   updateDepartment(department: Department): Observable<Department> {
     return this.http.put<Department>(this.baseApiUrl + 'api/Department/updateDepartment' , department);
+  }
+
+  saveJob(JobMaster:JobMaster) : Observable<JobMaster> {
+    return this.http.post<JobMaster>(this.baseApiUrl + 'api/Department/SaveJob', JobMaster);
+  }
+
+  getAllJobs(department_id:string) : Observable<JobMaster[]> {
+    return this.http.get<JobMaster[]>(this.baseApiUrl + 'api/Department/GetAllJobs/' + department_id);
   }
 }

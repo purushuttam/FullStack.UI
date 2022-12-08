@@ -1,1 +1,26 @@
-<p>leaves works!</p>
+<div class="container m-4 mb-2">
+<button class="btn btn-outline-primary" routerLink="add-leave">Add Leave</button><br>
+<table  class="table table-hover" *ngIf="leaves && leaves.length > 0">
+    <thead>
+        <tr>
+            <th>Leave Id</th>
+            <th>First Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Reason</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let leave of leaves">
+            <td>{{leave.leaves_id}}</td>
+            <td>{{leave.employee_id}}</td>
+            <td>{{leave.start_date | slice:0:10}}</td>
+            <td>{{leave.end_date | slice:0:10}}</td>
+            <td>{{leave.reason}}</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<p *ngIf="!leaves || leaves.length <= 0">No leaves Found.</p>
+</div>

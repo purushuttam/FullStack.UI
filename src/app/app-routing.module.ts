@@ -6,6 +6,7 @@ import { DepartmentListComponent } from './Components/Departments/department-lis
 import { UpdateDepartmentComponent } from './Components/Departments/update-department/update-department.component';
 import { AddEmployeeComponent } from './Components/Employees/add-employee/add-employee.component';
 import { EmployeesListComponent } from './Components/Employees/employees-list/employees-list.component';
+import { AddLeaveComponent } from './Components/Employees/leaves/add-leave/add-leave.component';
 import { LeavesComponent } from './Components/Employees/leaves/leaves.component';
 import { UpdateEmployeeComponent } from './Components/Employees/update-employee/update-employee.component';
 import { ViewEmployeeComponent } from './Components/Employees/view-employee/view-employee.component';
@@ -13,7 +14,8 @@ import { ViewEmployeeComponent } from './Components/Employees/view-employee/view
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent
+    component: DashboardComponent,
+    data:{title: 'Dashboard'}
   },
   {
     path: 'dashboard',
@@ -21,35 +23,47 @@ const routes: Routes = [
   },
   {
     path: 'Employees/employee-list',
-    component :EmployeesListComponent
+    component :EmployeesListComponent,
+    data:{title: 'Dashboard'}
   },
   {
     path: 'Employees/add-employee',
-    component : AddEmployeeComponent
+    component : AddEmployeeComponent,
+    data:{title: 'Dashboard'}
   },
   {
     path: 'Employees/update-employee',
-    component : UpdateEmployeeComponent
+    component : UpdateEmployeeComponent,
+    data:{title: 'Dashboard'}
   },
   {
     path:'Employees/view-employee',
-    component:ViewEmployeeComponent
+    component:ViewEmployeeComponent,
+    data:{title: 'Dashboard'}
   },
   {
     path:'Employees/leaves',
-    component: LeavesComponent
+    component: LeavesComponent,
+    data:{title: 'Dashboard'}
+  },
+  {
+    path: 'Employees/leaves/add-leave',
+    component: AddLeaveComponent
   },
   {
     path: 'Department/add-department',
-    component : AddDepartmentComponent
+    component : AddDepartmentComponent,
+    data:{title: 'Dashboard'}
   },
   {
     path: 'Department/department-list',
-    component: DepartmentListComponent
+    component: DepartmentListComponent,
+    data:{title: 'Dashboard'}
   },
   {
     path: 'Department/update-department',
-    component: UpdateDepartmentComponent
+    component: UpdateDepartmentComponent,
+    data:{title: 'Dashboard'}
   }
 ];
 

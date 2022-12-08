@@ -32,7 +32,7 @@ export interface Employee {
   updated_on: string
   updated_by: string
   employee_Qualification: EmployeeQualification[]
-  employee_Contact_Details: EmployeeContactDetail[]
+  employee_Contact_Details: EmployeeContactDetail
 }
 
 export interface EmployeeQualification {
@@ -64,3 +64,22 @@ export interface EmployeeContactDetail {
   updated_on: string
   updated_by: string
 }
+
+export interface EmployeeSearch {
+  employee_id: string
+  first_name: string
+  last_name: string
+  jd: string;
+  department_name: string
+  is_active: boolean
+}
+
+export interface leave {
+  leaves_id: string
+  employee_id: string
+  start_date: string
+  end_date: string
+  reason: string
+}
+
+

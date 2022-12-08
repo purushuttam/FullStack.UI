@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { leave } from 'src/app/models/employee.model';
+import { EmployeesService } from 'src/app/services/employees.service';
+import { Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-leaves',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeavesComponent implements OnInit {
 
-  constructor() { }
+  leaves:leave[] = [];
+  constructor(
+    private employeeService: EmployeesService,
+    private titleService : Title) {
+      this.titleService.setTitle('Leave | List')
+     }
 
   ngOnInit(): void {
+    this.employeeService.getAllLeave().subscribe({
+      next: response => {
+        this.leaves = response;
+      },
+      error: response => {
+        console.log(response);
+      }
+    })
   }
-
 }

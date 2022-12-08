@@ -7,6 +7,8 @@ import { country, state, city } from 'src/app/models/country.model';
 import { CountryDataService } from 'src/app/services/country-data.service';
 import { DepartmentDataService } from 'src/app/services/department-data.service';
 import { Department } from 'src/app/models/department.model';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-employee',
@@ -26,7 +28,10 @@ export class AddEmployeeComponent implements OnInit {
   constructor(
     private employeeService:EmployeesService,
     private CountryData: CountryDataService,
-    private DepartmentData: DepartmentDataService) {
+    private DepartmentData: DepartmentDataService,
+    private titleService: Title,
+    private router :Router) {
+      this.titleService.setTitle('Employee | Registration');
       this.DepartmentData.getAllDepartments().subscribe({
         next:(department) => {
           this.departments = department;
@@ -35,7 +40,7 @@ export class AddEmployeeComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    this.AddNewContact();
+    // this.AddNewContact();
     this.AddnewQualification();
    }
 
@@ -55,7 +60,21 @@ export class AddEmployeeComponent implements OnInit {
     updated_on: new FormControl('2022-12-07T09:24:08.121Z'),
     updated_by: new FormControl(''),
      employee_Qualification: new FormArray([]),
-     employee_Contact_Details: new FormArray([])
+     employee_Contact_Details: new FormGroup({
+      employee_contact_details_id: new FormControl(''),
+      employee_id: new FormControl(''),
+      mobile_no: new FormControl('', Validators.required),
+      email_id: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required),
+      city_id: new FormControl('', Validators.required),
+      state_id: new FormControl('', Validators.required),
+      country_id: new FormControl('', Validators.required),
+      is_active: new FormControl(true),
+    created_on: new FormControl('2022-12-07T09:24:08.121Z'),
+    created_by: new FormControl(''),
+    updated_on: new FormControl('2022-12-07T09:24:08.121Z'),
+    updated_by: new FormControl(''),
+     }),
    });
 
 
@@ -92,34 +111,22 @@ export class AddEmployeeComponent implements OnInit {
 
   GenContactRow():FormGroup {
     return new FormGroup({
-      employee_contact_details_id: new FormControl(''),
-      employee_id: new FormControl(''),
-      mobile_no: new FormControl('', Validators.required),
-      email_id: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required),
-      city_id: new FormControl('', Validators.required),
-      state_id: new FormControl('', Validators.required),
-      country_id: new FormControl('', Validators.required),
-      is_active: new FormControl(true),
-    created_on: new FormControl('2022-12-07T09:24:08.121Z'),
-    created_by: new FormControl(''),
-    updated_on: new FormControl('2022-12-07T09:24:08.121Z'),
-    updated_by: new FormControl(''),
+
     })
   }
 
-  AddNewContact() {
-    this.items = this.reactform.get("employee_Contact_Details") as FormArray;
-    this.items.push(this.GenContactRow())
-  }
-  RemoveContact(index:any){
-    this.items = this.reactform.get("employee_Contact_Details") as FormArray;
-    this.items.removeAt(index)
-  }
+  // AddNewContact() {
+  //   this.items = this.reactform.get("employee_Contact_Details") as FormArray;
+  //   this.items.push(this.GenContactRow())
+  // }
+  // RemoveContact(index:any){
+  //   this.items = this.reactform.get("employee_Contact_Details") as FormArray;
+  //   this.items.removeAt(index)
+  // }
 
-  get employee_Contact_Details(){
-    return this.reactform.get("employee_Contact_Details") as FormArray;
-  }
+  // get employee_Contact_Details(){
+  //   return this.reactform.get("employee_Contact_Details") as FormArray;
+  // }
 
   // ProceedSave() {
   //   console.log(this.reactform.value);
@@ -164,6 +171,9 @@ export class AddEmployeeComponent implements OnInit {
     console.log(EData);
     this.employeeService.saveEmployee(EData).subscribe((response:any) => {
       console.log(response);
+      if(response.resp === true){
+        this.router.navigate(['Employees/employee-list'])
+      }
     });
   }
 }
