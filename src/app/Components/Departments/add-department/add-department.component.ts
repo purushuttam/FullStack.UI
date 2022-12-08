@@ -38,6 +38,7 @@ export class AddDepartmentComponent implements OnInit {
     this.CountryData.GetAllCountries()
     .subscribe({
       next: (country) => {
+        console.log(country);
         this.countries = country;
       },
       error: (Response) => {
@@ -48,7 +49,8 @@ export class AddDepartmentComponent implements OnInit {
 
   OnCountrySelect(country_code:string){
     console.log(country_code);
-    this.CountryData.GetAllState(country_code).subscribe({
+    this.CountryData.GetAllState(country_code)
+    .subscribe({
       next: (state) => {
         this.states = state;
       },

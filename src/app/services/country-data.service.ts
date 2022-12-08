@@ -12,15 +12,27 @@ export class CountryDataService {
   baseApiUrl:string = environment.baseApiUrl;
   constructor(private http:HttpClient) { }
 
+  // GetAllCountries(){
+  //   return this.http.get<country[]>(this.baseApiUrl + 'api/Country/GetCountries');
+  // }
+
+  // GetAllState(country_code:string){
+  //   return this.http.get<state[]>(this.baseApiUrl + 'api/State/GetStateBy/' + country_code);
+  // }
+
+  // GetAllCities(state_code:string) {
+  //   return this.http.get<city[]>(this.baseApiUrl + 'api/City/GetCityBy/' + state_code);
+  // }
+
   GetAllCountries(){
-    return this.http.get<country[]>(this.baseApiUrl + 'api/Country/GetCountries');
+    return this.http.get<country[]>('assets/countries.json');
   }
 
   GetAllState(country_code:string){
-    return this.http.get<state[]>(this.baseApiUrl + 'api/State/GetStateBy/' + country_code);
+    return this.http.get<state[]>('assets/countries_state.json/' + country_code);
   }
 
   GetAllCities(state_code:string) {
-    return this.http.get<city[]>(this.baseApiUrl + 'api/City/GetCityBy/' + state_code);
+    return this.http.get<city[]>('assets/cities.json/' + state_code);
   }
 }

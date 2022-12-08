@@ -4,6 +4,7 @@
       <div class="form-row">
         <label for="first_name" class="form-label">First Name</label>
         <input class="form-control" type="text" name="first_name" id="first_name" formControlName="first_name" required>
+        <span *ngIf="!Dform.valid">please enetr valid name</span>
       </div>
       <div class="form-row">
         <label for="last_name" class="form-label">Last Name</label>
