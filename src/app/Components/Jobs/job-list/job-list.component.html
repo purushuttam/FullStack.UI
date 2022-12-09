@@ -1,0 +1,24 @@
+<div class="container mb-3 m-4 m-auto ">
+    <table class="table table-hover border-2" *ngIf="jobs && jobs.length > 0">
+        <thead>
+            <tr>
+                <th>Designation Code</th>
+                <th>Job Name</th>
+                <th>Description</th>
+                <th>Job Department</th>
+                <th>Min Salary</th>
+                <th>Max Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let job of jobs">
+                <td>{{job.designation_code}}</td>
+                <td>{{job.designation_name}}</td>
+                <td>{{job.job_description}}</td>
+                <td>{{job.designation_name}}</td>
+                <td>{{job.min_salary}}</td>
+                <td>{{job.max_salary}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -6,7 +6,7 @@ import { EmployeesService } from 'src/app/services/employees.service';
 import { country, state, city } from 'src/app/models/country.model';
 import { CountryDataService } from 'src/app/services/country-data.service';
 import { DepartmentDataService } from 'src/app/services/department-data.service';
-import { Department } from 'src/app/models/department.model';
+import { Department, JobMaster } from 'src/app/models/department.model';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
@@ -24,6 +24,8 @@ export class AddEmployeeComponent implements OnInit {
   cities:city[] = [];
 
   departments: Department[] = []
+
+  jobs: JobMaster[] = [];
 
   constructor(
     private employeeService:EmployeesService,
@@ -54,6 +56,7 @@ export class AddEmployeeComponent implements OnInit {
     dob: new FormControl('2022-12-07T09:24:08.121Z', Validators.required),
     jd: new FormControl('2022-12-07T09:24:08.121Z', Validators.required),
     department_id: new FormControl('', Validators.required),
+    job_master_id: new FormControl('',Validators.required),
     is_active: new FormControl(true),
     created_on: new FormControl('2022-12-07T09:24:08.121Z'),
     created_by: new FormControl(''),
@@ -162,6 +165,19 @@ export class AddEmployeeComponent implements OnInit {
         this.cities = city;
       },
       error: (response) => {
+        console.log(response);
+      }
+    })
+  }
+
+  onSelectJob(department_id:string){
+    console.log(department_id);
+    this.DepartmentData.getAllJob(department_id).subscribe({
+      next: (response:any) => {
+        console.log(response);
+        this.jobs = response.respObj;
+      },
+      error: response => {
         console.log(response);
       }
     })

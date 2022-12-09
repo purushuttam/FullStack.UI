@@ -1,0 +1,39 @@
+<div class="container  m-4 m-auto">
+    <form #Jform="ngForm" (ngSubmit)="onSubmit(Jform.value)">
+        <div class="row border-light  p-2">
+            <div class="form-row col-md-6">
+                <label class="form-label" for="department_id">Department</label>
+                <select class="form-control" name="department_id" id="department_id" ngModel name="department_id" required="">
+                    <option *ngFor="let department of departments" value="{{department.department_id}}" >
+                        {{department.department_name}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-row col-md-6">
+                <label class="form-label" for="designation_name">Designation Name</label>
+                <input class="form-control" type="text" ngModel name="designation_name" required="">
+            </div>
+            <div class="form-row col-md-6">
+                <label class="form-label" for="job_description">Job Description</label>
+                <input class="form-control" type="text" ngModel name="job_description" required="">
+            </div>
+            <div class="form-row col-md-6">
+                <label class="form-label" for="min_salary">Minimum Salary</label>
+                <input class="form-control" type="text" ngModel name="min_salary" required="">
+            </div>
+            <div class="form-row col-md-6">
+                <label class="form-label" for="max_salary">Maximum Salary</label>
+                <input class="form-control" type="text" ngModel name="max_salary" required="">
+            </div>
+            <div class="form-row">
+                <br>
+                <button class="btn btn-outline-primary"
+                type="submit"
+                [disabled]="!Jform.valid">
+                Save</button>
+                <button class="btn btn-outline-danger" type="reset">Reset</button>
+            </div>
+        </div>
+    </form>
+</div>
+

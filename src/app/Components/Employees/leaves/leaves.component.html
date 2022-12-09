@@ -1,4 +1,4 @@
-<div class="container m-4 mb-2">
+<div class="container m-4 mb-2 m-auto">
 <button class="btn btn-outline-primary" routerLink="add-leave">Add Leave</button><br>
 <table  class="table table-hover" *ngIf="leaves && leaves.length > 0">
     <thead>
@@ -24,3 +24,7 @@
 </table>
 <p *ngIf="!leaves || leaves.length <= 0">No leaves Found.</p>
 </div>
+<button mat-raised-button extended>mat-raised-button</button>
+
+
+

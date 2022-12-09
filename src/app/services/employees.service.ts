@@ -45,4 +45,5 @@ export class EmployeesService {
   getAllLeave() : Observable<leave[]> {
     return this.http.get<leave[]>(this.baseApiUrl + 'api/Leaves/Getleaves');
   }
+  
 }

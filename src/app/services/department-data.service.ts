@@ -34,10 +34,13 @@ export class DepartmentDataService {
   }
 
   saveJob(JobMaster:JobMaster) : Observable<JobMaster> {
-    return this.http.post<JobMaster>(this.baseApiUrl + 'api/Department/SaveJob', JobMaster);
+    return this.http.post<JobMaster>(this.baseApiUrl + 'api/Job/SaveJob', JobMaster);
   }
 
-  getAllJobs(department_id:string) : Observable<JobMaster[]> {
-    return this.http.get<JobMaster[]>(this.baseApiUrl + 'api/Department/GetAllJobs/' + department_id);
+  getAllJobs() : Observable<JobMaster[]> {
+    return this.http.get<JobMaster[]>(this.baseApiUrl + 'api/Job/GetAllJob');
+  }
+  getAllJob(department_id:string) : Observable<JobMaster[]> {
+    return this.http.get<JobMaster[]>(this.baseApiUrl + 'api/Job/GetAllJobByDId/' + department_id );
   }
 }

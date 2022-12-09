@@ -10,6 +10,9 @@ import { AddLeaveComponent } from './Components/Employees/leaves/add-leave/add-l
 import { LeavesComponent } from './Components/Employees/leaves/leaves.component';
 import { UpdateEmployeeComponent } from './Components/Employees/update-employee/update-employee.component';
 import { ViewEmployeeComponent } from './Components/Employees/view-employee/view-employee.component';
+import { AddJobComponent } from './Components/Jobs/add-job/add-job.component';
+import { JobListComponent } from './Components/Jobs/job-list/job-list.component';
+import { UpdateJobComponent } from './Components/Jobs/update-job/update-job.component';
 
 const routes: Routes = [
   {
@@ -64,6 +67,18 @@ const routes: Routes = [
     path: 'Department/update-department',
     component: UpdateDepartmentComponent,
     data:{title: 'Dashboard'}
+  },
+  {
+    path: 'Jobs/add-job',
+    component: AddJobComponent
+  },
+  {
+    path: 'Jobs/update-job',
+    component: UpdateJobComponent
+  },
+  {
+    path: 'Jobs/job-list',
+    component: JobListComponent
   }
 ];
 

@@ -12,7 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { CalendarModule } from 'primeng/calendar';
 
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {InputTextModule} from 'primeng/inputtext';
 import { UpdateEmployeeComponent } from './Components/Employees/update-employee/update-employee.component';
 import { AddDepartmentComponent } from './Components/Departments/add-department/add-department.component';
@@ -23,6 +23,9 @@ import { AddEmployeeComponent } from './Components/Employees/add-employee/add-em
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { LeavesComponent } from './Components/Employees/leaves/leaves.component';
 import { AddLeaveComponent } from './Components/Employees/leaves/add-leave/add-leave.component';
+import { AddJobComponent } from './Components/Jobs/add-job/add-job.component';
+import { UpdateJobComponent } from './Components/Jobs/update-job/update-job.component';
+import { JobListComponent } from './Components/Jobs/job-list/job-list.component';
 
 
 @NgModule({
@@ -37,7 +40,10 @@ import { AddLeaveComponent } from './Components/Employees/leaves/add-leave/add-l
     ViewEmployeeComponent,
     AddEmployeeComponent,
     LeavesComponent,
-    AddLeaveComponent
+    AddLeaveComponent,
+    AddJobComponent,
+    UpdateJobComponent,
+    JobListComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,8 @@ import { AddLeaveComponent } from './Components/Employees/leaves/add-leave/add-l
     RippleModule,
     InputTextModule,
     CalendarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

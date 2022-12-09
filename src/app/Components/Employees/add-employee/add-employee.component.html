@@ -1,4 +1,4 @@
-<div class="mb-3 container m-4">
+<div class="mb-3 container m-4 m-auto">
   <form [formGroup]="reactform" #Dform="ngForm" (ngSubmit)="onSubmit(Dform.value)">
     <div class="border row border-light  p-2">
       <div class="form-row col-md-6">
@@ -33,6 +33,18 @@
         <select class="form-select" formControlName="department_id">
           <option *ngFor="let department of departments;  let i = index" value="{{department.department_id }}" >
           {{ department.department_name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-row col-md-6">
+        <label for="job_master_id" class="form-label">Designation</label>
+        <select
+        (click)="onSelectJob(Dform.value.department_id)"
+        name="job_master_id" formControlName="job_master_id"
+        id="job_master_id"
+        class="form-select">
+          <option value="{{job.job_master_id}}" *ngFor="let job of jobs; let i = index">
+            {{job.designation_name}}
           </option>
         </select>
       </div>

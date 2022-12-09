@@ -34,25 +34,23 @@
             </div>
           </div>
         </li>
-        <!-- <li class="">
-          <a class="nav-link active">Employees</a>
+        <li class="nav-item m-1">
+          <div class="dropdown show">
+            <a class="btn bg-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Jobs
+            </a>
+            <div class="nav-item dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item bg-dark nav-link active" aria-current="page" routerLink="Jobs/add-job">Add Job</a>
+              <a class="dropdown-item bg-dark nav-link active" aria-current="page" routerLink="Jobs/update-job">update Job</a>
+              <a class="dropdown-item bg-dark nav-link active" aria-current="page" routerLink="Jobs/job-list">Job List</a>
+            </div>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="">Add Employees</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active">Add Department</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active">Department List</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active">update Department</a>
-        </li> -->
+
       </ul>
   </div>
   </div>
 </nav>
 <div class="container">
-  <router-outlet></router-outlet>
 </div>
+ <router-outlet></router-outlet>

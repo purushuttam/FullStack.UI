@@ -1,6 +1,6 @@
-<div class="mb-3 container m-4">
+<div class="mb-3 container m-auto m-4">
     <form [formGroup]="leaveForm" #lForm="ngForm" (ngSubmit)="onSubmit(lForm.value)">
-        <div class="border border-light col-6 p-2">
+        <div class="border border-light col-8 p-2">
             <div class="form-row mb-3">
                 <label for="employee_id" class="form-label">Employee Name</label>
                 <select class="form-select" formControlName="employee_id">

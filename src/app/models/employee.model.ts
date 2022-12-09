@@ -25,7 +25,7 @@ export interface Employee {
   dob: Date
   jd: Date
   department_id: string
-  department_name: string
+  job_master_id: string
   is_active: boolean
   created_on: string
   created_by: string
