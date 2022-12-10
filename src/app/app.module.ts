@@ -2,6 +2,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms'
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { Component } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,8 +56,7 @@ import { JobListComponent } from './Components/Jobs/job-list/job-list.component'
     RippleModule,
     InputTextModule,
     CalendarModule,
-    ReactiveFormsModule,
-    MatSlideToggleModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
