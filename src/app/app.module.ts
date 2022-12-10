@@ -56,7 +56,9 @@ import { JobListComponent } from './Components/Jobs/job-list/job-list.component'
     RippleModule,
     InputTextModule,
     CalendarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

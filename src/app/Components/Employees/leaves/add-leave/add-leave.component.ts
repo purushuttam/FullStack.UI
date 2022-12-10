@@ -44,14 +44,21 @@ export class AddLeaveComponent implements OnInit {
     end_date : new FormControl(''),
     reason : new FormControl('')
   })
+  showMsg: boolean = false;
+  res:any='';
 
   onSubmit(lform:leave){
     console.log(lform);
     this.employeeService.addLeave(lform).subscribe({
       next: (response:any) => {
         console.log(response);
-        if(response.resp === true){
-          this.router.navigate(['Employees/leaves'])
+        if(response.resp){
+          this.leaveForm.reset();
+          this.showMsg= true;
+          this.res = response.respMsg;
+          setTimeout(() =>{
+            this.showMsg= false;
+          },5000)
         }
       },
       error: response => {

@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   title = 'FullStack.UI';
 
 
+  date:any='';
   constructor(private primengConfig: PrimeNGConfig) {}
 
   ngOnInit() {
